@@ -35,6 +35,14 @@ class AuthController extends BaseController
         }
     }
 
+    public function userLogout() {
+        auth()->logout();
+        return $this->respond([
+            'message'=>'Log out realizado com sucesso',
+            'status'=>true,
+        ]);
+    }
+
     public function loggedOut()
     {
         return $this->fail("Não autorizado! Necessário realizar autenticação.", 400);

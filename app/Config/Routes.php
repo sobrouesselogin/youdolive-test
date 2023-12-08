@@ -13,4 +13,7 @@ $routes->post('/user_login', [AuthController::class, 'userLogin']);
 $routes->get('/users', [ApiController::class, 'getUsers'], ['filter'=>'checkApiAuth']);
 
 
-service('auth')->routes($routes);
+// service('auth')->routes($routes);
+//sobrescreve logout padrão do shield (apenas para adicionar filtro de autenticação)
+service('auth')->routes($routes, ['except' => ['logout']]);
+$routes->get('logout', [AuthController::class, 'userLogout'], ['filter'=>'checkApiAuth']);
